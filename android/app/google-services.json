@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "356516441121",
+    "project_id": "book-reselling-app",
+    "storage_bucket": "book-reselling-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:356516441121:android:f45944fdf208ba39408760",
+        "android_client_info": {
+          "package_name": "com.example.book_reselling_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "356516441121-cv5g7gh7tgms3rootsfd3532mf9k3epn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.book_reselling_app",
+            "certificate_hash": "0121a60cd9f5e55404740c4eeab8912f9fced28a"
+          }
+        },
+        {
+          "client_id": "356516441121-4opd0sctg25o0qlpe91fvmlh9jlbn2ik.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAi-fBSjZHAD8D8Eu66WTutK7_W5G5XQG0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "356516441121-4opd0sctg25o0qlpe91fvmlh9jlbn2ik.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
