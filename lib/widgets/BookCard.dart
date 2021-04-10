@@ -132,12 +132,14 @@ class _BookTileCardState extends State<BookTileCard> {
         return Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            ListTile(
-              title: Text("Request For Book"),
-              onTap: () {
-                requestForBook();
-              },
-            ),
+            widget.uploadBy != StorageMethods.userID()
+                ? ListTile(
+                    title: Text("Request For Book"),
+                    onTap: () {
+                      requestForBook();
+                    },
+                  )
+                : SizedBox(),
             widget.uploadBy == StorageMethods.userID()
                 ? ListTile(
                     title: Text("Delete The Book"),
