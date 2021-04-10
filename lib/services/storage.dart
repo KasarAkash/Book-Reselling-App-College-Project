@@ -3,13 +3,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:intl/intl.dart';
 
 class StorageMethods {
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  static FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  User user = FirebaseAuth.instance.currentUser;
+  static User user = FirebaseAuth.instance.currentUser;
 
   String timeNow = DateFormat("hh:mm:ss dd-MM-yyyy").format(DateTime.now());
 
-  userID() {
+  static userID() {
     return user.email.replaceAll("@gmail.com", "");
   }
 
@@ -20,6 +20,10 @@ class StorageMethods {
     } catch (e) {
       print(e.toString());
     }
+  }
+
+  static deleteTheBook(var docID) {
+    return firestore.collection("Books").doc(docID).delete();
   }
 
   myUploadedBooks() {

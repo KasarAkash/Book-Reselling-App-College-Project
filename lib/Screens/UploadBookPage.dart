@@ -209,8 +209,7 @@ class _UploadBookState extends State<UploadBook> {
                         maxLines: 5,
                         decoration: InputDecoration(
                           hintMaxLines: 5,
-                          hintText:
-                              "Description (Ex. Sem, condition of book, Subject of book, Branch of book)",
+                          hintText: "Description",
                           hintStyle: TextStyle(
                             color: Colors.black,
                             fontSize: 16,

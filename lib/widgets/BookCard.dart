@@ -1,7 +1,7 @@
 import 'package:book_reselling_app/Screens/ImageView.dart';
+import 'package:book_reselling_app/services/storage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-enum CardOptions { requiest }
 
 class BookTileCard extends StatefulWidget {
   final String title;
@@ -9,6 +9,8 @@ class BookTileCard extends StatefulWidget {
   final String branch;
   final List<dynamic> img;
   final String description;
+  final String uploadBy;
+  final String cardID;
 
   const BookTileCard({
     Key key,
@@ -17,13 +19,14 @@ class BookTileCard extends StatefulWidget {
     this.img,
     this.sem,
     this.branch,
+    this.uploadBy,
+    this.cardID,
   }) : super(key: key);
   @override
   _BookTileCardState createState() => _BookTileCardState();
 }
 
 class _BookTileCardState extends State<BookTileCard> {
-  CardOptions _selection;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -81,20 +84,12 @@ class _BookTileCardState extends State<BookTileCard> {
                           fontWeight: FontWeight.w800,
                         ),
                       ),
-                      PopupMenuButton<CardOptions>(
-                        onSelected: (CardOptions result) {
-                          setState(() {
-                            _selection = result;
-                          });
+                      IconButton(
+                        icon: Icon(Icons.more_vert),
+                        onPressed: () {
+                          showOptions();
                         },
-                        itemBuilder: (BuildContext context) =>
-                            <PopupMenuEntry<CardOptions>>[
-                          const PopupMenuItem<CardOptions>(
-                            value: CardOptions.requiest,
-                            child: Text('Working a lot harder'),
-                          ),
-                        ],
-                      )
+                      ),
                     ],
                   ),
                   Text(
@@ -119,6 +114,39 @@ class _BookTileCardState extends State<BookTileCard> {
           ],
         ),
       ),
+    );
+  }
+
+  showOptions() {
+    requestForBook() {}
+    deleteOps() {
+      if (widget.uploadBy == StorageMethods.userID()) {
+        StorageMethods.deleteTheBook(widget.cardID);
+        Navigator.pop(context);
+      }
+    }
+
+    return showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              title: Text("Request For Book"),
+              onTap: () {
+                requestForBook();
+              },
+            ),
+            ListTile(
+              title: Text("Delete The Book"),
+              onTap: () {
+                deleteOps();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
