@@ -138,12 +138,14 @@ class _BookTileCardState extends State<BookTileCard> {
                 requestForBook();
               },
             ),
-            ListTile(
-              title: Text("Delete The Book"),
-              onTap: () {
-                deleteOps();
-              },
-            ),
+            widget.uploadBy == StorageMethods.userID()
+                ? ListTile(
+                    title: Text("Delete The Book"),
+                    onTap: () {
+                      deleteOps();
+                    },
+                  )
+                : SizedBox(),
           ],
         );
       },
