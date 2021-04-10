@@ -1,3 +1,4 @@
+import 'package:book_reselling_app/Screens/MyUploadedBooks.dart';
 import 'package:book_reselling_app/services/storage.dart';
 import 'package:book_reselling_app/widgets/Loading.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -59,6 +60,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   subtitle: Text(data["college"]),
                 ),
                 Divider(thickness: 3),
+                ListTile(
+                  title: Text("My Uploaded Books"),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => MyUploadedBooks(),
+                      ),
+                    );
+                  },
+                ),
               ],
             );
           }

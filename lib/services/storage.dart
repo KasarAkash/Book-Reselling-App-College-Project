@@ -9,7 +9,7 @@ class StorageMethods {
 
   String timeNow = DateFormat("hh:mm:ss dd-MM-yyyy").format(DateTime.now());
 
-  dynamic userID() {
+  userID() {
     return user.email.replaceAll("@gmail.com", "");
   }
 
@@ -17,6 +17,17 @@ class StorageMethods {
   getBooksList() {
     try {
       return firestore.collection("Books").orderBy("timeStamp").snapshots();
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  myUploadedBooks() {
+    try {
+      return firestore
+          .collection("Books")
+          .where("uploadBy", isEqualTo: userID())
+          .snapshots();
     } catch (e) {
       print(e.toString());
     }

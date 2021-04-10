@@ -135,6 +135,7 @@ class _HomePageState extends State<HomePage> {
               itemCount: snapshot.data.docs.length,
               itemBuilder: (BuildContext context, int index) {
                 DocumentSnapshot ds = snapshot.data.docs[index];
+
                 return BookTileCard(
                   title: ds.get("title"),
                   sem: ds.get("sem"),

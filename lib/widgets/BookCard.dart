@@ -10,9 +10,14 @@ class BookTileCard extends StatefulWidget {
   final List<dynamic> img;
   final String description;
 
-  const BookTileCard(
-      {Key key, this.title, this.description, this.img, this.sem, this.branch})
-      : super(key: key);
+  const BookTileCard({
+    Key key,
+    this.title,
+    this.description,
+    this.img,
+    this.sem,
+    this.branch,
+  }) : super(key: key);
   @override
   _BookTileCardState createState() => _BookTileCardState();
 }
