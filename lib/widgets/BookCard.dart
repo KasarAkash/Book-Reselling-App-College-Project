@@ -119,12 +119,6 @@ class _BookTileCardState extends State<BookTileCard> {
 
   showOptions() {
     requestForBook() {}
-    deleteOps() {
-      if (widget.uploadBy == StorageMethods.userID()) {
-        StorageMethods.deleteTheBook(widget.cardID);
-        Navigator.pop(context);
-      }
-    }
 
     return showModalBottomSheet(
       context: context,
@@ -144,7 +138,8 @@ class _BookTileCardState extends State<BookTileCard> {
                 ? ListTile(
                     title: Text("Delete The Book"),
                     onTap: () {
-                      deleteOps();
+                      StorageMethods.deleteTheBook(widget.cardID);
+                      Navigator.pop(context);
                     },
                   )
                 : SizedBox(),
