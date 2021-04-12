@@ -32,6 +32,8 @@ class _MyUploadedBooksState extends State<MyUploadedBooks> {
                   branch: ds.get("branch"),
                   img: ds.get("imageURL"),
                   description: ds.get("description"),
+                  uploadBy: ds.get("uploadBy"),
+                  cardID: ds.id,
                 );
               },
             );

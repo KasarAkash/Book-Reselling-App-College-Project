@@ -46,18 +46,14 @@ class _SignInPageState extends State<SignInPage> {
                     height: 400,
                     margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                     decoration: BoxDecoration(
+                      color: Colors.amber,
                       border: Border.all(
                         color: Colors.black,
                         width: 3,
                       ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        "Company Logo",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w800,
-                        ),
+                      image: DecorationImage(
+                        fit: BoxFit.contain,
+                        image: AssetImage("Images/thumbnail.jpg"),
                       ),
                     ),
                   ),

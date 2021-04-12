@@ -173,6 +173,8 @@ class _HomePageState extends State<HomePage> {
                   branch: ds.get("branch"),
                   img: ds.get("imageURL"),
                   description: ds.get("description"),
+                  uploadBy: ds.get("uploadBy"),
+                  cardID: ds.id,
                 );
               },
             );

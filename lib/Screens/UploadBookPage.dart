@@ -240,7 +240,7 @@ class _UploadBookState extends State<UploadBook> {
                           _showDialog();
                         } else {
                           uploadFiles();
-                          _showSnackbar();
+
                           Future.delayed(Duration(milliseconds: 1000), () {
                             Navigator.pushAndRemoveUntil(
                               context,
@@ -302,14 +302,6 @@ class _UploadBookState extends State<UploadBook> {
       branchValue,
       _descriptionController.text,
       imgList,
-    );
-  }
-
-  _showSnackbar() {
-    return ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text("Book is Uploaded"),
-      ),
     );
   }
 

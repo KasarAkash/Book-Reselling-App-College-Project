@@ -15,6 +15,9 @@ class _ImageViewState extends State<ImageView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey,
+      appBar: AppBar(
+        title: Text("Image Preview"),
+      ),
       body: Center(
         child: CarouselSlider.builder(
           itemCount: widget.imgs.length,
