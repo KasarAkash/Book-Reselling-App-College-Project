@@ -1,7 +1,9 @@
 import 'package:book_reselling_app/Screens/ImageView.dart';
 import 'package:book_reselling_app/services/storage.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:book_reselling_app/widgets/Loading.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'dart:core';
 
 class BookTileCard extends StatefulWidget {
   final String title;
@@ -118,32 +120,56 @@ class _BookTileCardState extends State<BookTileCard> {
   }
 
   showOptions() {
-    requestForBook() {}
+    final email = widget.uploadBy + "@gmail.com";
 
     return showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            widget.uploadBy != StorageMethods.userID()
-                ? ListTile(
-                    title: Text("Request For Book"),
-                    onTap: () {
-                      requestForBook();
-                    },
-                  )
-                : SizedBox(),
-            widget.uploadBy == StorageMethods.userID()
-                ? ListTile(
-                    title: Text("Delete The Book"),
-                    onTap: () {
-                      StorageMethods.deleteTheBook(widget.cardID);
-                      Navigator.pop(context);
-                    },
-                  )
-                : SizedBox(),
-          ],
+        return FutureBuilder(
+          future: StorageMethods().getProfileDetails(),
+          builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              Map<String, dynamic> data = snapshot.data.data();
+
+              var name = data["name"];
+              var clg = data["college"];
+              var enroll = data["enrollment_no"];
+
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  widget.uploadBy != StorageMethods.userID()
+                      ? ListTile(
+                          title: Text("Request For Book"),
+                          onTap: () {
+                            final Uri _emailLaunchUri = Uri(
+                              scheme: 'mailto',
+                              path: '$email',
+                              queryParameters: {
+                                'subject': "I want to buy your Book",
+                                'body':
+                                    'Hi, My name is $name.\nI am from $clg College.\nMy Enrollment Number is $enroll.\nAnd I want to buy your Book'
+                              },
+                            );
+                            launch(_emailLaunchUri.toString());
+                            Navigator.pop(context);
+                          },
+                        )
+                      : SizedBox(),
+                  widget.uploadBy == StorageMethods.userID()
+                      ? ListTile(
+                          title: Text("Delete The Book"),
+                          onTap: () {
+                            StorageMethods.deleteTheBook(widget.cardID);
+                            Navigator.pop(context);
+                          },
+                        )
+                      : SizedBox(),
+                ],
+              );
+            }
+            return Loading();
+          },
         );
       },
     );

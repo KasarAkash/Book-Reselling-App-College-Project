@@ -33,7 +33,7 @@ dependencies:
   google_sign_in: ^5.0.1
   image_picker: ^0.7.3
   intl: ^0.17.0
-  mailer: ^5.0.0
+  url_launcher: ^6.0.3
 
 dev_dependencies:
   flutter_test:
